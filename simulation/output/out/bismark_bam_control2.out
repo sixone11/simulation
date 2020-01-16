@@ -1,0 +1,122 @@
+chr chr1 (249250621 bp)
+chr chr2 (243199373 bp)
+chr chr3 (198022430 bp)
+chr chr4 (191154276 bp)
+chr chr5 (180915260 bp)
+chr chr6 (171115067 bp)
+chr chr7 (159138663 bp)
+chr chr8 (146364022 bp)
+chr chr9 (141213431 bp)
+chr chr10 (135534747 bp)
+chr chr11 (135006516 bp)
+chr chr12 (133851895 bp)
+chr chr13 (115169878 bp)
+chr chr14 (107349540 bp)
+chr chr15 (102531392 bp)
+chr chr16 (90354753 bp)
+chr chr17 (81195210 bp)
+chr chr18 (78077248 bp)
+chr chr19 (59128983 bp)
+chr chr20 (63025520 bp)
+chr chr21 (48129895 bp)
+chr chr22 (51304566 bp)
+chr chrX (155270560 bp)
+chr chrY (59373566 bp)
+chr chrM (16571 bp)
+
+Number of paired-end alignments with a unique best hit:	47899
+Mapping efficiency:	89.7%
+
+Sequence pairs with no alignments under any condition:	0
+Sequence pairs did not map uniquely:	5519
+Sequence pairs which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequence pairs with unique best (first) alignment came from the bowtie output:
+CT/GA/CT:	23654	((converted) top strand)
+GA/CT/CT:	0	(complementary to (converted) top strand)
+GA/CT/GA:	0	(complementary to (converted) bottom strand)
+CT/GA/GA:	24245	((converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+Number of paired-end alignments with a unique best hit:	47905
+Mapping efficiency:	89.7%
+
+Sequence pairs with no alignments under any condition:	0
+Sequence pairs did not map uniquely:	5513
+Sequence pairs which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequence pairs with unique best (first) alignment came from the bowtie output:
+CT/GA/CT:	23804	((converted) top strand)
+GA/CT/CT:	0	(complementary to (converted) top strand)
+GA/CT/GA:	0	(complementary to (converted) bottom strand)
+CT/GA/GA:	24101	((converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+Number of paired-end alignments with a unique best hit:	47927
+Mapping efficiency:	89.7%
+
+Sequence pairs with no alignments under any condition:	0
+Sequence pairs did not map uniquely:	5492
+Sequence pairs which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequence pairs with unique best (first) alignment came from the bowtie output:
+CT/GA/CT:	23710	((converted) top strand)
+GA/CT/CT:	0	(complementary to (converted) top strand)
+GA/CT/GA:	0	(complementary to (converted) bottom strand)
+CT/GA/GA:	24217	((converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+Number of paired-end alignments with a unique best hit:	47947
+Mapping efficiency:	89.8%
+
+Sequence pairs with no alignments under any condition:	1
+Sequence pairs did not map uniquely:	5471
+Sequence pairs which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequence pairs with unique best (first) alignment came from the bowtie output:
+CT/GA/CT:	23773	((converted) top strand)
+GA/CT/CT:	0	(complementary to (converted) top strand)
+GA/CT/GA:	0	(complementary to (converted) bottom strand)
+CT/GA/GA:	24174	((converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+Number of paired-end alignments with a unique best hit:	47941
+Mapping efficiency:	89.7%
+
+Sequence pairs with no alignments under any condition:	0
+Sequence pairs did not map uniquely:	5477
+Sequence pairs which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequence pairs with unique best (first) alignment came from the bowtie output:
+CT/GA/CT:	24043	((converted) top strand)
+GA/CT/CT:	0	(complementary to (converted) top strand)
+GA/CT/GA:	0	(complementary to (converted) bottom strand)
+CT/GA/GA:	23898	((converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+control2.1_val_1.fq.temp.1	control2.2_val_2.fq.temp.1	control2.1_val_1.fq.temp.2	control2.2_val_2.fq.temp.2	control2.1_val_1.fq.temp.3	control2.2_val_2.fq.temp.3	control2.1_val_1.fq.temp.4	control2.2_val_2.fq.temp.4	control2.1_val_1.fq.temp.5	control2.2_val_2.fq.temp.5	
+
+control2.1_val_1.fq.temp.1_bismark_bt2_pe.bam	control2.1_val_1.fq.temp.2_bismark_bt2_pe.bam	control2.1_val_1.fq.temp.3_bismark_bt2_pe.bam	control2.1_val_1.fq.temp.4_bismark_bt2_pe.bam	control2.1_val_1.fq.temp.5_bismark_bt2_pe.bam	
+
+Number of paired-end alignments with a unique best hit:	239619
+Mapping efficiency:	89.7%
+
+Sequence pairs with no alignments under any condition:	1
+Sequence pairs did not map uniquely:	27472
+Sequence pairs which were discarded because genomic sequence could not be extracted:	0
+
+Number of sequence pairs with unique best (first) alignment came from the bowtie output:
+CT/GA/CT:	118984	((converted) top strand)
+GA/CT/CT:	0	(complementary to (converted) top strand)
+GA/CT/GA:	0	(complementary to (converted) bottom strand)
+CT/GA/GA:	120635	((converted) bottom strand)
+
+Number of alignments to (merely theoretical) complementary strands being rejected in total:	0
+
+control2.1_val_1.fq.temp.1_bismark_bt2_PE_report.txt	control2.1_val_1.fq.temp.2_bismark_bt2_PE_report.txt	control2.1_val_1.fq.temp.3_bismark_bt2_PE_report.txt	control2.1_val_1.fq.temp.4_bismark_bt2_PE_report.txt	control2.1_val_1.fq.temp.5_bismark_bt2_PE_report.txt	
+

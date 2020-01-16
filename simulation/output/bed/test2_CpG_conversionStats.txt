@@ -1,0 +1,8 @@
+Conversion Statistics:
+
+total otherC considered (>95% C+T): 278067
+average conversion rate = 96.876742334141
+total otherC considered (Forward) (>95% C+T): 138764
+average conversion rate (Forward) = 96.867962513211
+total otherC considered (Reverse) (>95% C+T): 139303
+average conversion rate (Reverse) = 96.885488183632
