@@ -6,6 +6,7 @@
 
 #step 1:get the mean methylation level of regions
 #1.1
+cd input
 bedtools intersect -a DMRs_unDMRs_signal.bed -b real_data_mean_chr21.bed -loj >position_CpG_mean.bed
 
 #1.2:calculate the mean
@@ -31,6 +32,8 @@ if __name__=="__main__":
 # In a bed file the mean methylation level of each region is the same, and we keep one decimal place of mean methylation level. 
 # We can get the bed file of control group which the mean methylation level wasn't changed anymore.
 #At the same time, we changed the methylation level of DMRs according to the DMRs type(hyper or hypo), and the variation is random and larger than 0.1(It is OK if you want to set the different variation to a certain ratio). 
+mkdir -p ../output/test.bed
+mkdir -p ../output/control.bed
 
 python -c'
 import pandas as pd
@@ -68,33 +71,33 @@ def main():
     os.system("mkdir -p test.bed")
     for i in [i*0.1 for i in range(0,11)]:
         df_out=output[output[4]==round(i,1)].sort_index(by = [0,1])
-        name="test.bed/methy_level_"+str(round(i,1))+".bed"
+        name="../output/test.bed/methy_level_"+str(round(i,1))+".bed"
         df_out.to_csv(name,index=False,sep="\t",header=None)
     os.system("mkdir -p control.bed")
     for i in [i*0.1 for i in range(0,11)]:
         df_out=df[df[4]==round(i,1)].sort_index(by = [0,1])  
-        name="control.bed/methy_level_"+str(round(i,1))+".bed"
+        name="../output/control.bed/methy_level_"+str(round(i,1))+".bed"
         df_out.to_csv(name,index=False,sep="\t",header=None)
 if __name__=="__main__":
     main()
 '
 
 #step 3:get the reference sequence according to the bed file above.
-mkdir -p test.fa
-mkdir -p control.fa
+mkdir -p ../output/test.fa
+mkdir -p ../output/control.fa
 for i in {0..9}
 do 
-	bedtools getfasta -fi hg19.fa -bed test.bed/methy_level_0.${i}.bed -fo test.fa/methy_level_0.${i}.fa&
+	bedtools getfasta -fi hg19.fa -bed ../output/test.bed/methy_level_0.${i}.bed -fo ../outputtest.fa/methy_level_0.${i}.fa&
 done
-bedtools getfasta -fi hg19.fa -bed test.bed/methy_level_1.0.bed -fo test.fa/methy_level_1.0.fa&
+bedtools getfasta -fi hg19.fa -bed ../output/test.bed/methy_level_1.0.bed -fo ../output/test.fa/methy_level_1.0.fa&
 
 for i in {0..9}
 do 
-	bedtools getfasta -fi hg19.fa -bed control.bed/methy_level_0.${i}.bed -fo control.fa/methy_level_0.${i}.fa&
+	bedtools getfasta -fi hg19.fa -bed ../output/control.bed/methy_level_0.${i}.bed -fo ../output/control.fa/methy_level_0.${i}.fa&
 done
 
-bedtools getfasta -fi hg19.fa -bed test.bed/methy_level_1.0.bed -fo control.fa/methy_level_1.0.fa&
+bedtools getfasta -fi hg19.fa -bed ../output/control.bed/methy_level_1.0.bed -fo ../output/control.fa/methy_level_1.0.fa&
 
 
 #step 4:get the DMRs' position
-awk 'BEGIN{FS="\t";OFS="\t";} {if($4!=0) print $1,$2,$3}' DMRs_unDMRs_signal.bed>total_DMRs
+awk 'BEGIN{FS="\t";OFS="\t";} {if($4!=0) print $1,$2,$3}' DMRs_unDMRs_signal.bed>../output/total_DMRs
