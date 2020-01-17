@@ -1,9 +1,16 @@
 #!/bin/bash
 set -o errexit
-###################################################################################
-help_file="sh -p seq default:seq -o outdir -s sample_numbers default:(2 4 6 8)\n
- -d {mean_depths} (array) default:(1 5 10 20 30) -r ${rates[@]} default:rates=(0.05 0.1 0.15 0.2)"
-
+########################################################################
+##The workflow of this script
+#Step 1: Run RRBSsim
+#Step 2: Sequence stitching
+#Step 3: Trim and Fastqc
+#Step 4: Run Bismark
+#Step 5: Convert coverage file to bed file
+########################################################################
+help_file="\tWe could get the 1 test simulation data and 1 control simulation data through running this script\n
+\tThe basic format of run this script is like below:\n
+\tsh simulation.sh -o ${outdir} -t ${time}\n"
 TEMP=`getopt -o o:t:h --long outdir:,time:,help -- "$@"` 
 eval set -- "$TEMP"
 while true ; do
@@ -23,21 +30,21 @@ done
 outdir=${outdir:-/data/sixone/lllab/DMR/BiB_final/pROC/1}
 time=${time:-1}
 cd ${outdir}
-##################################################################################
-#fa=/data/sixone/lllab/DMR/BiB_final/custom_code/fa;
+
+###############################################################################
+#The assignment of path 
+
 fa=/data/sixone/lllab/DMR/BiB_final/code/data
-#RRBSsim=/data/sixone/software/DMR/RRBSsim-master;
 RRBSsim=/data/sixone/lllab/DMR/BiB_final/duplicate_header/RRBSsim-master
-GRCh37=/data/GRCh37;
-####################################################################################
-#outfile 
+GRCh37=/data/GRCh37
+###############################################################################
+#Create the outfile  folder
 mkdir -p  out
-###################################################################################
+###############################################################################
 
-#The simulation of different types of DMRs
-
+#Step 1: Run RRBSsim
 mkdir -p rrbssim
-#The simulation of DMRs in treatment  
+#Step 1.1: The simulation of treatment group
 python2 ${RRBSsim}/RRBSsim -f ${fa}/test.fa/methy_level_0.0.fa --CG_level 0.05 --SAM -R -d 30 -o test${time}_0.0 --seed ${RANDOM} --multicore 5&
 
 for i in {1..9}
@@ -49,7 +56,7 @@ python2 ${RRBSsim}/RRBSsim -f ${fa}/test.fa/methy_level_1.0.fa --CG_level 0.95 -
 
 wait 
 
-#control group
+#Step 1.2: The simulation of control group 
 python2 ${RRBSsim}/RRBSsim -f ${fa}/control.fa/methy_level_0.0.fa --CG_level 0.05 --SAM -R -d 30 -o control${time}_0.0 --seed ${RANDOM} --multicore 5&
 
 for i in {1..9}
@@ -61,29 +68,29 @@ python2 ${RRBSsim}/RRBSsim -f ${fa}/control.fa/methy_level_1.0.fa --CG_level 0.9
 
 wait 
 
-#Sequence stitching
-#test group
+#Step 2: Sequence stitching
+#Step 2.1: In treatment group
 mkdir -p  fq
 cat rrbssim/test${time}_*.1.fq >fq/test${time}.1.fq 
 cat rrbssim/test${time}_*.2.fq >fq/test${time}.2.fq 
-#control group
+#Step2.2: In control group
 cat rrbssim/control${time}_*.1.fq >fq/control${time}.1.fq 
 cat rrbssim/control${time}_*.2.fq >fq/control${time}.2.fq 
 wait 
 
 #######################################################################################
-#Trim and Fastqc
+#Step 3: Trim and Fastqc
 
-#Fastqc
-#test group 
+#Step 3.1: Fastqc
+#Step 3.1.1: In treatment group 
 mkdir -p  fastqc_initial
 fastqc -o fastqc_initial --noextract -t 10 fq/test${time}.1.fq fq/test${time}.2.fq>out/fastqc_initial_test${time}.out;
 
-#control group 
+#Step3.1.2: In control group 
 fastqc -o fastqc_initial --noextract -t 10 fq/control${time}.1.fq fq/control${time}.2.fq>out/fastqc_initial_control${time}.out;
 
 
-#Trim
+#Step 3.2: Trim
 mkdir -p  trim_fq
 
 cd trim_fq
@@ -91,20 +98,21 @@ trim_galore -a GATCGGAAGAGCA -a2 GATCGGAAGAGCA  --rrbs  --paired ../fq/test${tim
 
 trim_galore -a GATCGGAAGAGCA -a2 GATCGGAAGAGCA  --rrbs  --paired ../fq/control${time}.1.fq   ../fq/control${time}.2.fq &
 
+
 wait 
 cd .. 
 
-#Fqstqc again
-
-#test group
+#Step 3.3: Fqstqc again
+#Step 3.3.1: In treatment group
 mkdir -p  fastqc_trim
 fastqc -o fastqc_trim --noextract -t 10 trim_fq/test${time}.1_val_1.fq ./trim_fq/test${time}.2_val_2.fq>out/fastqc_trim_test${time}.out;
 
-#control group 
+#Step 3.3.2: In control group
 fastqc -o fastqc_trim --noextract -t 10 trim_fq/control${time}.1_val_1.fq trim_fq/control${time}.2_val_2.fq>out/fastqc_trim_control${time}.out;
 
 #######################################################################################
-#Bismark 1:generate bam file
+#Step 4: Run Bismark
+#Step 4.1: generate bam file
 mkdir -p  bam
 cd bam
 #test group 
@@ -112,7 +120,7 @@ bismark ${GRCh37} -1 ../trim_fq/test${time}.1_val_1.fq -2 ../trim_fq/test${time}
 #control group 
 bismark ${GRCh37} -1 ../trim_fq/control${time}.1_val_1.fq -2 ../trim_fq/control${time}.2_val_2.fq --bowtie2 --multicore  5 > ../out/bismark_bam_control${time}.out;
 
-#Bismark 2:generate cov file
+#Bismark 4.2: generate cov file
 cd ..
 mkdir -p  cov
 
@@ -125,7 +133,8 @@ mv cov/test${time}.1_val_1_bismark_bt2_pe.bismark.cov cov/test${time}.cov;
 bismark_methylation_extractor -p --gzip --no_overlap --genome_folder ${GRCh37} --bedGraph -o cov --multicore 10 bam/control${time}.1_val_1_bismark_bt2_pe.bam > out/bismark_cov_control${time}.out ; 
 gunzip cov/control${time}.1_val_1_bismark_bt2_pe.bismark.cov.gz;
 mv cov/control${time}.1_val_1_bismark_bt2_pe.bismark.cov cov/control${time}.cov;
-#######################################################################################
+###############################################################################
+#Step 5: Convert coverage file to bed file
 #Cov file to bed file and basic process of bed file
 mkdir -p  bed
 awk 'BEGIN{FS="\t";OFS="\t"} {print $1,$2,$2+1,$4,$5,$6}' cov/test${time}.cov|sed '/chrX/d;/chrY/d;/chrM/d'|grep chr21 |sort -k1,1V -k2,2n -k3,3n > bed/test${time}.bed;
