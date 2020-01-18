@@ -34,7 +34,7 @@
    - run_simulation.sh : We could get n pairs of simulated data through running this script and this script is a supplementary for simulation.sh
      - The basic format of run this script is like: sh run_simulation.sh -o ${outdir} -n ${number}
 
-#  PART 3: The process of calculating the overlap in simulated data.
+#  PART 3: The process of calculating the overlap in simulated data
 
 1. Input
 
@@ -48,15 +48,13 @@
 
 3. Script
 
-   - simulateddata_overlap.sh: The main script of 
+   - simulateddata_overlap.sh: The main script of calculating overlap rate in simulated data.
 
-     
-
-   - simulattedata_overlap.py: 
+   - simulattedata_overlap.py: The sub script of calculating overlap rate in simulated data.
 
 
 
-# PART 4: The process of calculating the overlap in real data.
+# PART 4: The process of calculating the overlap in real data
 
 1. Input
    - *_DMR: The results of different tools about DMRs.
@@ -66,11 +64,11 @@
    -  mDmerge\_*_CpGrate: The overlap rate of  2 different tools.
 3. Script
    - calculate_realdata_overlaprate.sh: The main script of calculating the overlap in real data.
-   - calculate_overlap.py: 
+   - calculate_overlap.py: The sub script that used to calculate the AUC in real data.
 
 
 
-# PART 5: The process of calculating  the AUC.
+# PART 5: The process of calculating  the AUC
 
 1. Input
    - *_DMR: The results of different tools about DMRs.
@@ -80,8 +78,8 @@
 
 2. Output
    -  *_rate.bed: The overlap rate between the DMRs/non-DMRs and the tool.
-   -  AUC_results: The file that contains the value of different tools.
+   -  AUC_results: The file that contains the value of AUC.
 3. Script
-   - calculate_AUC.sh
-   - simulationdata_overlap.py
-   - calculate_AUC_all.R
+   - calculate_AUC.sh: The main script of calculating AUC
+   - simulationdata_overlap.py: The sub script that used to calculated the overlapped rate in simulated data.
+   - calculate_AUC_all.R The sub script that used to calculate the AUC.
