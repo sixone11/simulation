@@ -27,15 +27,16 @@ while true ; do
 done
 
 #Parameter initialization
-outdir=${outdir:-/data/sixone/lllab/DMR/BiB_final/pROC/1}
+outdir=${outdir:-"output"}
 time=${time:-1}
 cd ${outdir}
 
 ###############################################################################
 #The assignment of path 
 
-fa=/data/sixone/lllab/DMR/BiB_final/code/data
-RRBSsim=/data/sixone/lllab/DMR/BiB_final/duplicate_header/RRBSsim-master
+fa=../input
+RRBSsim=../input/RRBSsim-master
+#Please specify the path by yourself
 GRCh37=/data/GRCh37
 ###############################################################################
 #Create the outfile  folder
@@ -140,10 +141,7 @@ mkdir -p  bed
 awk 'BEGIN{FS="\t";OFS="\t"} {print $1,$2,$2+1,$4,$5,$6}' cov/test${time}.cov|sed '/chrX/d;/chrY/d;/chrM/d'|grep chr21 |sort -k1,1V -k2,2n -k3,3n > bed/test${time}.bed;
 
 awk 'BEGIN{FS="\t";OFS="\t"} {print $1,$2,$2+1,$4,$5,$6}' cov/control${time}.cov|sed '/chrX/d;/chrY/d;/chrM/d'|grep chr21 |sort -k1,1V -k2,2n -k3,3n > bed/control${time}.bed;
-#######################################################################################
-
-
-
+#################################################################################
 
 
 
