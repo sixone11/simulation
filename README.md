@@ -34,7 +34,7 @@
    - run_simulation.sh : We could get n pairs of simulated data through running this script and this script is a supplementary for simulation.sh
      - The basic format of run this script is like: sh run_simulation.sh -o ${outdir} -n ${number}
 
-#  PART 3: The process of calculating the overlap in simulated data.
+#  PART 3: The process of calculating the overlap in simulated data
 
 1. Input
 
@@ -56,7 +56,7 @@
 
 
 
-# PART 4: The process of calculating the overlap in real data.
+# PART 4: The process of calculating the overlap in real data
 
 1. Input
    - *_DMR: The results of different tools about DMRs.
@@ -70,7 +70,7 @@
 
 
 
-# PART 5: The process of calculating  the AUC.
+# PART 5: The process of calculating  the AUC
 
 1. Input
    - *_DMR: The results of different tools about DMRs.
