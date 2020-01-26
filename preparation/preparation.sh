@@ -16,7 +16,7 @@ import numpy as np
 def main():
     df = pd.read_csv("position_CpG_mean.bed", sep="\t",header=None);
     df[df[7]=="."]=np.nan
-    df[7]=df[7].astype('float64')
+    df[7]=df[7].astype('float32')
     out=pd.DataFrame(df.groupby([0,1,2,3])[7].mean()).reset_index()
     out[7]=round(out[7],1)
     out[1]=out[1].astype('int64')
@@ -40,7 +40,7 @@ import pandas as pd
 import numpy as np
 import random
 import os 
-
+from decimal import Decimal
 def main():
     df = pd.read_csv("position_mean.bed", sep="\t",header=None)
     out=list()
@@ -60,7 +60,7 @@ def main():
         data=out[i]
         for j in [k for k in range(0,data.shape[0])]:
             if data[3][j]==2:
-                limit=(1-round(data[4][0],1))*10
+                limit=int((1-round(data[4][0],1))*10)
                 if limit<1: limit=1
                 data[4][j]=round(random.randint(1,limit)*0.1,1)
             if data[3][j]==3:
