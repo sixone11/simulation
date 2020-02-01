@@ -92,7 +92,7 @@
    - *_rate.bed: The overlap rate of diifferent tools.
 
 2. Output
-   - kendallW_results: The  kendall coefficient of concordance
+   - kendallW_results: The  kendall‘s coefficient of concordance
    - MDS_results:The results of multidimensional scaling.
 3. Script
    - kendall'W.R: The main script of calculating kendall'W.
