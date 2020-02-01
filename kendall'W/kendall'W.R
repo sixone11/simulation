@@ -30,17 +30,7 @@ for(i in 1:length(data)){
 MDS<-data.frame(matrix_ken)
 MDS$software<-rownames(matrix_ken)
 colnames(MDS)<-c("x","y","software")
-write.table(MDS,file="output/kendallW_results",append=TRUE,quote=FALSE,sep="\t",row.names=FALSE,col.names=TRUE)
-
-#MDS plot
-suppressMessages(library(ggplot2))
-suppressMessages(library(RColorBrewer))
-suppressMessages(library(data.table))
-suppressMessages(library(ggplot2))
-suppressMessages(library(grid))
-suppressMessages(library(cowplot))
-suppressMessages(library(ggthemes))
-suppressMessages(library(grid))
-
-ggplot(MDS,aes(x=x,y=y,color=software,color=software,shape=software,stroke=1.5),alpha = 0.5)+geom_point(size=4,stroke=2)+labs(x="1st coordinate",y="2nd coordinate")+theme(axis.text.x=element_text(size = 12,face = "bold"),axis.title=element_text(face="bold"),legend.title = element_text(face="bold"),axis.text.y=element_text(size=12,face = "bold"),axis.line=element_blank())+theme_bw()+theme(axis.title =element_text(size = 24),axis.text =element_text(size = 20, color = 'black'))+labs(color="methods")+scale_colour_manual(name = "methods",labels = c("BiSeq","DMRfinder", "DSS", "HMM-DM","HMM-Fisher","methylKit","methylSig","metilene"),values = c(rgb(165,84,44,max=255),rgb(250,139,101,max=255),rgb(143,161,201,max=255),rgb(231,137,193,max=255),rgb(164,216,95,max=255),rgb(253,216,68,max=255),rgb(228,195,151,max=255),rgb(179,179,179,max=255)))+scale_shape_manual(name = "methods",labels = c("BiSeq","DMRfinder", "DSS", "HMM-DM","HMM-Fisher","methylKit","methylSig","metilene"),values=c(9,6,8,11,3,4,23,24))
-
+rownames(correlation)<-rownames(matrix_ken)
+colnames(correlation)<-rownames(matrix_ken)
+write.table(correlation,file="output/kendallW_results",quote=FALSE,sep="\t",row.names=TRUE,col.names=TRUE)
+write.table(MDS,file="output/MDS_results",quote=FALSE,sep="\t",row.names=FALSE,col.names=TRUE)

@@ -44,7 +44,7 @@
 
 2. Output
 
-   -  *_rate.bed: The overlap rate between the DMRs/non-DMRs and the tool.
+   -  *_rate.bed:  The overlap rate of diifferent tools.
 
 3. Script
 
@@ -77,9 +77,22 @@
    - chr21.bed: The bed file of the start and end of chromosome21.
 
 2. Output
-   -  *_rate.bed: The overlap rate between the DMRs/non-DMRs and the tool.
+   -  *_rate.bed: The overlap rate of diifferent tools.
    -  AUC_results: The file that contains the value of AUC.
 3. Script
    - calculate_AUC.sh: The main script of calculating AUC
    - simulationdata_overlap.py: The sub script that used to calculated the overlapped rate in simulated data.
-   - calculate_AUC_all.R The sub script that used to calculate the AUC.
+   - calculate_AUC_all.R The sub script that used to calculate the AUC.PART 5: The process of calculating  the AUC
+
+
+
+# PART 6: The process of calculating  the kendall'W
+
+1. Input
+   - *_rate.bed: The overlap rate of diifferent tools.
+
+2. Output
+   - kendallW_results: The  kendall coefficient of concordance
+   - MDS_results:The results of multidimensional scaling.
+3. Script
+   - kendall'W.R: The main script of calculating kendall'W.
