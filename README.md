@@ -53,22 +53,7 @@
    - simulattedata_overlap.py: The sub script of calculating overlap rate in simulated data.
 
 
-
-# PART 4: The process of calculating the overlap in real data
-
-1. Input
-   - *_DMR: The results of different tools about DMRs.
-   - merge_total.bed: The bed file that contains the depth information of the intersection of CpG sites of all samples.
-
-2. Output
-   -  mDmerge\_*_CpGrate: The overlap rate of  2 different tools.
-3. Script
-   - calculate_realdata_overlaprate.sh: The main script of calculating the overlap in real data.
-   - calculate_overlap.py: The sub script that used to calculate the AUC in real data.
-
-
-
-# PART 5: The process of calculating  the AUC
+# PART 4: The process of calculating  the AUC
 
 1. Input
    - *_DMR: The results of different tools about DMRs.
@@ -86,7 +71,7 @@
 
 
 
-# PART 6: The process of calculating  the kendall'W
+# PART 5: The process of calculating  the kendall'W
 
 1. Input
    - *_rate.bed: The overlap rate of diifferent tools.
@@ -96,3 +81,5 @@
    - MDS_results:The results of multidimensional scaling.
 3. Script
    - kendall'W.R: The main script of calculating kendall'W.
+   
+   
